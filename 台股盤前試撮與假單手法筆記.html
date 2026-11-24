@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>台股盤前試撮規則與主力假單手法筆記</title>
+<style>
+  body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background:#f4f6f9; color:#333; margin:0; padding:0; line-height:1.75; }
+  header { background:linear-gradient(135deg,#1e3c72,#2a5298); color:#fff; padding:28px 20px; text-align:center; }
+  header h1 { margin:0 0 8px; }
+  nav { background:#fff; padding:10px; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,.08); position:sticky; top:0; z-index:10; }
+  nav a { margin:4px 10px; color:#2a5298; text-decoration:none; font-weight:bold; display:inline-block; }
+  nav a:hover { text-decoration:underline; }
+  main { max-width:920px; margin:24px auto; padding:0 16px; }
+  section { background:#fff; border-radius:10px; padding:22px 26px; margin-bottom:22px; box-shadow:0 2px 6px rgba(0,0,0,.06); }
+  h2 { color:#1e3c72; border-left:6px solid #2a5298; padding-left:10px; margin-top:0; }
+  h3 { color:#2a5298; margin-bottom:6px; }
+  table { width:100%; border-collapse:collapse; margin-top:10px; }
+  th, td { padding:10px 12px; border-bottom:1px solid #e5e8ee; text-align:left; vertical-align:top; }
+  th { background:#eef2f9; color:#1e3c72; }
+  .tag-no { background:#fdecea; color:#b3261e; padding:2px 8px; border-radius:12px; font-weight:bold; font-size:.9em; }
+  .tag-warn { background:#fff4e0; color:#a15c00; padding:2px 8px; border-radius:12px; font-weight:bold; font-size:.9em; }
+  .tag-yes { background:#e3f6e8; color:#1b7a3a; padding:2px 8px; border-radius:12px; font-weight:bold; font-size:.9em; }
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-top:12px; }
+  .step { background:#f8faff; border:1px solid #dbe4f3; border-radius:8px; padding:14px; }
+  .step .num { font-size:1.15em; font-weight:bold; color:#1e3c72; margin-bottom:4px; }
+  .tip { background:#eef6ff; border-left:4px solid #2a5298; padding:12px 16px; border-radius:6px; margin-top:14px; }
+  .warn { background:#fff4e0; border-left:4px solid #e67e22; padding:12px 16px; border-radius:6px; margin-top:14px; }
+  footer { text-align:center; color:#888; font-size:.9em; padding:20px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>⏱️ 台股「盤前試撮」規則與主力假單手法筆記</h1>
+  <div>證券市場微結構實務・08:30 ～ 09:00 開盤前必懂觀念</div>
+</header>
+
+<nav>
+  <a href="#timeline">一、盤前時間表與成交規則</a>
+  <a href="#manipulation">二、主力「掛假單」四步手法</a>
+  <a href="#defense">三、防騙實戰判斷原則</a>
+  <a href="#closing">附錄：收盤前 5 分鐘試撮</a>
+</nav>
+
+<main>
+
+<section id="timeline">
+  <h2>一、為什麼 08:30～09:00 掛單不會馬上成交？</h2>
+  <p>台股在早上 09:00 正式開盤前，有 30 分鐘的<b>「盤前試撮（模擬撮合）」</b>時段。這段時間電腦只會每 5 秒試算一次「如果現在開盤會成交在多少錢」，但<b>完全不會真正撮合成交</b>：</p>
+  <table>
+    <tr><th>時間區段</th><th>市場狀態與規則</th><th>可以撤單／改單嗎？</th><th>會不會真正成交？</th></tr>
+    <tr>
+      <td><b>08:30 ～ 08:59</b><br>（前 29 分鐘）</td>
+      <td>接受買賣委託掛單，證交所每 5 秒揭露一次「模擬試撮價」與最佳五檔</td>
+      <td>✅ <b>可以隨時取消（撤單）或改價</b></td>
+      <td><span class="tag-no">❌ 完全不會成交</span></td>
+    </tr>
+    <tr>
+      <td><b>08:59 ～ 09:00</b><br>（最後 1 分鐘）</td>
+      <td><b>禁止撤單／改單管制期</b>（金管會為防堵主力假單而設的規定，只能新增委託，不能取消或修改已掛出的單）</td>
+      <td>🚫 <b>禁止撤單、禁止改單</b></td>
+      <td><span class="tag-warn">⏳ 尚未成交，但單子已鎖死不能反悔</span></td>
+    </tr>
+    <tr>
+      <td><b>09:00:00 整</b><br>（正式開盤）</td>
+      <td><b>開盤集合競價</b>：電腦將所有有效委託單一次撮合，決定當日「開盤價」</td>
+      <td>—</td>
+      <td><span class="tag-yes">✅ 這一秒才真正成交！</span></td>
+    </tr>
+  </table>
+</section>
+
+<section id="manipulation">
+  <h2>二、主力是怎麼利用「掛假單」騙散戶的？</h2>
+  <p>以我們在 08:41 觀察到光寶科（2301）試撮價亮在 <b>204.0 元（漲停價）</b> 為例，主力或隔日沖大戶常見的誘多／誘空四步驟如下：</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="num">步驟 1｜08:30～08:55<br>掛假單製造假象</div>
+      主力故意用<b>漲停價</b>掛買幾千張。因為 08:59 前不會成交、隨時能取消，主力<b>一毛錢都不用真的花出去</b>，就能讓看盤軟體亮出「試撮漲停紅燈」。
+    </div>
+    <div class="step">
+      <div class="num">步驟 2｜08:40～08:58<br>誘騙散戶跟風搶買</div>
+      不熟悉規則的新手看到試撮漲停，以為今天有重大利多、怕開盤買不到，於是趕緊跟著掛<b>漲停價或市價單</b>去排隊搶買。
+    </div>
+    <div class="step">
+      <div class="num">步驟 3｜08:58:30 左右<br>最後一秒瞬間抽單</div>
+      趕在 <b>08:59:00 禁止撤單規定生效前幾秒鐘</b>，主力透過程式瞬間把那幾千張漲停買單<b>全部取消（抽單）</b>！
+    </div>
+    <div class="step">
+      <div class="num">步驟 4｜09:00:00 整<br>散戶高檔接刀</div>
+      主力抽單後，試撮價瞬間掉回正常價格（例如平盤附近），但來不及撤單的散戶在 09:00 開盤那一秒全部買在當日相對高點，主力甚至趁機倒貨。
+    </div>
+  </div>
+
+  <div class="warn">
+    ⚠️ <b>反向操作（試撮假跌停誘空）：</b>主力有時也會在 08:30～08:58 故意掛幾千張<b>跌停賣單</b>，把試撮價壓到跌停板，嚇得散戶以為公司出事而掛低價恐慌拋售；接著主力在 08:58:30 撤掉假賣單，在 09:00 開盤用便宜價格把散戶嚇出來的股票全部接走。
+  </div>
+</section>
+
+<section id="defense">
+  <h2>三、要怎麼看盤前試撮才不會被騙？（三大實戰原則）</h2>
+  <ol>
+    <li><b>08:58 以前的試撮價「當作沒看到」：</b><br>
+      不管 08:30～08:58 試撮是漲停還是跌停，因為可以免費撤單，幾乎沒有參考價值，千萬不要看試撮漲停就急著掛高價去追。</li>
+    <li><b>真正要看的是「08:59:00 ～ 09:00:00」這最後一分鐘：</b><br>
+      因為 <b>08:59 一到就禁止撤單與改單</b>，所有假單都會在 08:58:59 前現形。如果到了 <b>08:59:10 之後</b>，試撮價依然維持在大漲或漲停，代表那些買單是<b>真金白銀鎖死、準備在 09:00 成交的真單</b>，這時才有參考價值。</li>
+    <li><b>搭配我们的 <code>tw-stock-health-analyzer</code> 技能時：</b><br>
+      <ul>
+        <li>若在 <b>08:30～08:59</b> 執行分析，報告頂端會標示 <b>「盤前試撮」</b> 並同時列出「前一交易日正式收盤價」，方便你對照。</li>
+        <li>若要拿來寫正式作業或看真實市場價格，建議在 <b>09:00 開盤後（看盤中即時成交價）</b> 或 <b>13:30 收盤後（看當日正式收盤價）</b> 執行。</li>
+      </ul>
+    </li>
+  </ol>
+</section>
+
+<section id="closing">
+  <h2>附錄：下午收盤前 5 分鐘（13:25～13:30）也有試撮！</h2>
+  <p>除了早上開盤前，台股每天下午收盤前 5 分鐘（<b>13:25 ～ 13:30</b>）也是採「集合競價試撮」來決定當日最後一筆收盤價：</p>
+  <table>
+    <tr><th>時間區段</th><th>規則說明</th></tr>
+    <tr><td><b>13:25 ～ 13:29</b></td><td>暫停盤中逐筆成交，只接受掛單並每 5 秒揭露「收盤試撮價」（<b>這 4 分鐘內仍可撤單，也常有主力掛假單</b>）。</td></tr>
+    <tr><td><b>13:29 ～ 13:30</b></td><td><b>最後 1 分鐘禁止撤單／改單</b>，13:30:00 整一次撮合成交，決定當日正式<b>收盤價</b>。</td></tr>
+  </table>
+  <div class="tip">💡 <b>記憶口訣：</b>開盤前看 <b>08:59</b>、收盤前看 <b>13:29</b>——只有「最後一分鐘禁撤單」之後的試撮價才是真的！</div>
+</section>
+
+</main>
+
+<footer>財經系交易實務筆記｜整理日期：2026-11-24</footer>
+
+</body>
+</html>
