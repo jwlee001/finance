@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>財經系學習與實務筆記入口網</title>
+<style>
+  :root {
+    --primary: #1e3c72;
+    --secondary: #2a5298;
+    --bg: #f4f6f9;
+    --card-bg: #ffffff;
+    --text: #2c3e50;
+    --muted: #6c7a89;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Microsoft JhengHei", "PingFang TC", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.65;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #fff;
+    padding: 48px 20px 40px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  header h1 {
+    margin: 0 0 10px;
+    font-size: 2em;
+    letter-spacing: 1px;
+  }
+  header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1.05em;
+  }
+  main {
+    max-width: 960px;
+    width: 100%;
+    margin: -24px auto 40px;
+    padding: 0 20px;
+    flex: 1;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 24px;
+  }
+  .card {
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 28px 26px;
+    box-shadow: 0 6px 18px rgba(30, 60, 114, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-top: 5px solid var(--secondary);
+    text-decoration: none;
+    color: inherit;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(30, 60, 114, 0.14);
+  }
+  .badge {
+    display: inline-block;
+    background: #eef4ff;
+    color: var(--secondary);
+    font-size: 0.82em;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .card h2 {
+    margin: 0 0 10px;
+    color: var(--primary);
+    font-size: 1.4em;
+  }
+  .card p {
+    margin: 0 0 16px;
+    color: #4a5568;
+    font-size: 0.96em;
+  }
+  .tags {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 22px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .tags li {
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 0.82em;
+    padding: 3px 10px;
+    border-radius: 6px;
+  }
+  .btn {
+    display: inline-block;
+    background: var(--secondary);
+    color: #fff;
+    text-align: center;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.95em;
+    transition: background 0.2s ease;
+  }
+  .card:hover .btn {
+    background: var(--primary);
+  }
+  .info-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-top: 28px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #2a5298;
+  }
+  .info-box h3 {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-size: 1.1em;
+  }
+  .info-box ul {
+    margin: 0;
+    padding-left: 20px;
+    color: #4a5568;
+    font-size: 0.94em;
+  }
+  .info-box li {
+    margin-bottom: 4px;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88em;
+    padding: 20px;
+    border-top: 1px solid #e2e8f0;
+    background: #fff;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📚 財經系學習與實務筆記</h1>
+  <p>國內外財經媒體導覽・官方數據庫・台股交易微結構實務</p>
+</header>
+
+<main>
+  <div class="grid">
+
+    <!-- 卡片 1：財經預習資源 -->
+    <a class="card" href="./財經預習資源.html">
+      <div>
+        <span class="badge">單元 01｜基礎資源導覽</span>
+        <h2>📈 財經系新生預習資源</h2>
+        <p>彙整財經系必備的國內外新聞網站、四大財經雜誌、央行與證交所官方資料庫、自學平台與每日 15 分鐘預習心法。</p>
+        <ul class="tags">
+          <li>台灣財經新聞</li>
+          <li>國際外電 (Reuters/WSJ)</li>
+          <li>官方經濟數據 (FRED/MOPS)</li>
+          <li>自學百科與 Podcast</li>
+        </ul>
+      </div>
+      <span class="btn">進入預習資源總覽 →</span>
+    </a>
+
+    <!-- 卡片 2：台股盤前試撮與假單手法筆記 -->
+    <a class="card" href="./台股盤前試撮與假單手法筆記.html">
+      <div>
+        <span class="badge">單元 02｜交易市場實務</span>
+        <h2>⏱️ 台股盤前試撮與假單手法筆記</h2>
+        <p>解析台股 08:30～09:00 盤前試撮與 13:25～13:30 尾盤試撮規則，拆解主力「掛假漲停／假跌停、08:58 瞬間抽單」的誘多誘空手法與防騙原則。</p>
+        <ul class="tags">
+          <li>08:30-09:00 盤前試撮</li>
+          <li>08:59 禁止撤單規則</li>
+          <li>主力假單四步驟</li>
+          <li>13:25-13:30 尾盤集合競價</li>
+        </ul>
+      </div>
+      <span class="btn">閱讀試撮實務筆記 →</span>
+    </a>
+
+  </div>
+
+  <div class="info-box">
+    <h3>💡 快速學習建議</h3>
+    <ul>
+      <li><b>課前導讀：</b>先由「<b>財經系新生預習資源</b>」挑選 3～5 個常用新聞與數據網站加入瀏覽器書籤，養成每日追蹤總經與產業動態的習慣。</li>
+      <li><b>看盤實務：</b>在觀察個股開盤前報價時，搭配「<b>台股盤前試撮與假單手法筆記</b>」，牢記「早盤看 08:59、尾盤看 13:29 禁撤單後價格」的實戰口訣。</li>
+    </ul>
+  </div>
+</main>
+
+<footer>
+  財經系學習筆記入口網 ｜ 最後更新：2026-11-24
+</footer>
+
+</body>
+</html>
